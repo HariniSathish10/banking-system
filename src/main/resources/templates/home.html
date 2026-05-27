@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Banking Dashboard</title>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+
+            font-family:'Segoe UI',sans-serif;
+
+            height:100vh;
+
+            background:
+            linear-gradient(135deg,#021b79,#0575e6);
+
+            overflow:hidden;
+        }
+
+        .navbar{
+
+            width:100%;
+            height:80px;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            padding:0 50px;
+
+            color:white;
+        }
+
+        .logo{
+
+            font-size:40px;
+        }
+
+        .logo-section{
+
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo-section h2{
+
+            font-size:38px;
+            font-weight:700;
+        }
+
+        .secure{
+
+            font-size:20px;
+        }
+
+        .main{
+
+            height:calc(100vh - 80px);
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            position:relative;
+        }
+
+        .background-text{
+
+            position:absolute;
+
+            left:60px;
+            top:80px;
+
+            font-size:120px;
+            font-weight:bold;
+
+            color:rgba(255,255,255,0.05);
+
+            transform:rotate(-12deg);
+        }
+
+        .dashboard{
+
+            width:520px;
+
+            background:white;
+
+            border-radius:22px;
+
+            padding:45px;
+
+            text-align:center;
+
+            box-shadow:
+            0 10px 40px rgba(0,0,0,0.3);
+
+            z-index:10;
+        }
+
+        .bank-icon{
+
+            width:100px;
+            height:100px;
+
+            background:#eef4ff;
+
+            border-radius:50%;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            margin:auto;
+
+            font-size:50px;
+
+            color:#005bea;
+        }
+
+        .welcome{
+
+            margin-top:25px;
+
+            font-size:42px;
+
+            color:#003087;
+        }
+
+        .sub{
+
+            margin-top:10px;
+
+            color:gray;
+
+            font-size:18px;
+
+            margin-bottom:35px;
+        }
+
+        .btn{
+
+            width:100%;
+
+            padding:20px;
+
+            margin-top:20px;
+
+            border:none;
+
+            border-radius:14px;
+
+            color:white;
+
+            font-size:22px;
+
+            font-weight:600;
+
+            cursor:pointer;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            transition:0.3s;
+        }
+
+        .btn:hover{
+
+            transform:translateY(-4px);
+
+            box-shadow:
+            0 8px 18px rgba(0,0,0,0.25);
+        }
+
+        .blue{
+
+            background:
+            linear-gradient(to right,#0048ff,#006eff);
+        }
+
+        .green{
+
+            background:
+            linear-gradient(to right,#00a86b,#00c896);
+        }
+
+        .red{
+
+            background:
+            linear-gradient(to right,#ff1744,#ff4569);
+        }
+
+        .footer{
+
+            position:absolute;
+
+            bottom:25px;
+
+            color:white;
+
+            font-size:18px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo">
+            <i class="fa-solid fa-building-columns"></i>
+        </div>
+
+        <h2>Banking System</h2>
+
+    </div>
+
+    <div class="secure">
+        <i class="fa-solid fa-shield-halved"></i>
+        Secure Banking
+    </div>
+
+</div>
+
+<div class="main">
+
+    <div class="background-text">
+        BANK
+    </div>
+
+    <div class="dashboard">
+
+        <div class="bank-icon">
+            <i class="fa-solid fa-building-columns"></i>
+        </div>
+
+        <h1 class="welcome">
+            Welcome Back!
+        </h1>
+
+        <p class="sub">
+            Manage your accounts and transactions securely.
+        </p>
+
+        <button class="btn blue"
+        onclick="window.location.href='/accounts-page'">
+
+            <span>
+                <i class="fa-solid fa-users"></i>
+                View Accounts
+            </span>
+
+            <i class="fa-solid fa-angle-right"></i>
+
+        </button>
+
+        <button class="btn green">
+
+            <span>
+                <i class="fa-solid fa-right-left"></i>
+                Transactions
+            </span>
+
+            <i class="fa-solid fa-angle-right"></i>
+
+        </button>
+
+        <button class="btn red"
+        onclick="window.location.href='/login'">
+
+            <span>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </span>
+
+            <i class="fa-solid fa-angle-right"></i>
+
+        </button>
+
+    </div>
+
+    <div class="footer">
+        © 2025 Banking System
+    </div>
+
+</div>
+
+</body>
+</html>

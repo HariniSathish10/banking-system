@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Modern Banking Application</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="navbar">
+        <div class="logo">🏦 Haul Bank</div>
+        <div class="nav-links">
+            <span>Dashboard</span>
+            <span>Accounts</span>
+            <span>Transactions</span>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Digital Banking Dashboard</h1>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Accounts</h3>
+                <p>Bank Management</p>
+            </div>
+
+            <div class="card">
+                <h3>Secure Banking</h3>
+                <p>Protected Transactions</p>
+            </div>
+
+            <div class="card">
+                <h3>24/7 Services</h3>
+                <p>Online Banking</p>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Create Account</h2>
+
+            <input type="text" id="name" placeholder="Enter Name">
+            <input type="number" id="balance" placeholder="Enter Balance">
+
+            <button onclick="createAccount()">Create Account</button>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Get Account</h2>
+
+            <input type="number" id="accountId" placeholder="Enter Account ID">
+
+            <button onclick="getAccount()">Get Account</button>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Deposit Money</h2>
+
+            <input type="number" id="depositId" placeholder="Account ID">
+            <input type="number" id="depositAmount" placeholder="Amount">
+
+            <button onclick="depositMoney()">Deposit</button>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Withdraw Money</h2>
+
+            <input type="number" id="withdrawId" placeholder="Account ID">
+            <input type="number" id="withdrawAmount" placeholder="Amount">
+
+            <button onclick="withdrawMoney()">Withdraw</button>
+
+        </div>
+    <div class="section">
+
+    <h2>Transfer Money</h2>
+
+    <input type="number" id="fromId"
+           placeholder="From Account ID">
+
+    <input type="number" id="toId"
+           placeholder="To Account ID">
+
+    <input type="number" id="transferAmount"
+           placeholder="Amount">
+
+    <button onclick="transferMoney()">
+        Transfer
+    </button>
+
+</div>
+        <div class="result-box">
+            <div class="result-title">Transaction Result</div>
+            <pre id="result"></pre>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Harini Banking Application
+    </div>
+
+</div>
+
+<script>
+
+function createAccount() {
+
+    fetch('/accounts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            accountHolderName: document.getElementById('name').value,
+            balance: document.getElementById('balance').value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText =
+            JSON.stringify(data, null, 2);
+    });
+}
+
+function getAccount() {
+
+    const id = document.getElementById('accountId').value;
+
+    fetch('/accounts/' + id)
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText =
+            JSON.stringify(data, null, 2);
+    });
+}
+
+function depositMoney() {
+
+    const id = document.getElementById('depositId').value;
+
+    fetch('/accounts/' + id + '/deposit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            amount: document.getElementById('depositAmount').value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText =
+            JSON.stringify(data, null, 2);
+    });
+}
+
+function transferMoney() {
+
+    const fromId =
+        document.getElementById('fromId').value;
+
+    fetch('/accounts/' + fromId + '/transfer', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+
+            toAccountId:
+                document.getElementById('toId').value,
+
+            amount:
+                document.getElementById('transferAmount').value
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        document.getElementById('result').innerText =
+            JSON.stringify(data, null, 2);
+    });
+}
+function withdrawMoney() {
+
+    const id = document.getElementById('withdrawId').value;
+
+    fetch('/accounts/' + id + '/withdraw', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            amount: document.getElementById('withdrawAmount').value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText =
+            JSON.stringify(data, null, 2);
+    });
+}
+
+</script>
+
+</body>
+</html>

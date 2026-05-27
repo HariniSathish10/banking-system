@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Banking Application</title>
+</head>
+
+<body>
+
+<h1>Banking Application</h1>
+
+<h2>Create Account</h2>
+
+<input type="text" id="name" placeholder="Enter Name">
+<input type="number" id="balance" placeholder="Enter Balance">
+
+<button onclick="createAccount()">Create Account</button>
+
+<h2>Get Account</h2>
+
+<input type="number" id="accountId" placeholder="Enter Account ID">
+
+<button onclick="getAccount()">Get Account</button>
+
+<h2>Deposit Money</h2>
+
+<input type="number" id="depositId" placeholder="Account ID">
+<input type="number" id="depositAmount" placeholder="Amount">
+
+<button onclick="depositMoney()">Deposit</button>
+<h2>Withdraw Money</h2>
+
+<input type="number" id="withdrawId" placeholder="Account ID">
+<input type="number" id="withdrawAmount" placeholder="Amount">
+
+<button onclick="withdrawMoney()">Withdraw</button>
+<pre id="result"></pre>
+function withdrawMoney() {
+
+    const id = document.getElementById('withdrawId').value;
+
+    fetch('/accounts/' + id + '/withdraw', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            amount: document.getElementById('withdrawAmount').value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerText =
+     
