@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-repo.git'
+                git url: 'https://github.com/HariniSathish10/banking-system.git',
+credentialsId: 'github-token'
             }
         }
 
