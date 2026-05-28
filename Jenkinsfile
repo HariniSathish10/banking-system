@@ -7,16 +7,12 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout Code') {
             steps {
-            stage('Checkout Code') {
-    steps {
-        git branch: 'main',
-        credentialsId: 'github-token',
-        url: 'https://github.com/HariniSathish10/banking-system.git'
-    }
-}
-
+                git branch: 'main',
+                credentialsId: 'github-token',
+                url: 'https://github.com/HariniSathish10/banking-system.git'
             }
         }
 
@@ -34,7 +30,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t banking-account-service .'
+                sh 'docker build -t banking-system .'
             }
         }
     }
