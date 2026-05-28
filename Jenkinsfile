@@ -9,7 +9,14 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/your-repo/banking-system.git'
+            stage('Checkout Code') {
+    steps {
+        git branch: 'main',
+        credentialsId: 'github-token',
+        url: 'https://github.com/HariniSathish10/banking-system.git'
+    }
+}
+
             }
         }
 
